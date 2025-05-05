@@ -9,7 +9,7 @@ sim - make RUN WR=<write_count_number> RE=<read_count_number>
 
 __________________________________________________________________________
 
-## Waveform :- 
+## Memory Waveform :- 
 
 ![Memory Wave](mem_wave.png)
 
