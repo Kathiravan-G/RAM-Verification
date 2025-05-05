@@ -1,6 +1,3 @@
-//-------------------------------------------------------------------------
-//                                              mem_test - www.verificationguide.com 
-//-------------------------------------------------------------------------
 
 `include "mem_env.sv"
 class mem_model_base_test extends uvm_test;

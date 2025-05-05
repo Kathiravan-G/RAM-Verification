@@ -1,6 +1,4 @@
-//-------------------------------------------------------------------------
-//                                              mem_write_read_test - www.verificationguide.com 
-//-------------------------------------------------------------------------
+
 class mem_wr_rd_test extends mem_model_base_test;
 
   `uvm_component_utils(mem_wr_rd_test)
