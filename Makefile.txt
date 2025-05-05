@@ -9,7 +9,7 @@ RE := 1
 QUESTA_SIM_PATH  = '/tool/mentor/questa-10.7c/questasim/bin'
 compile:       
         $(VLOG) ../rtl/memory.sv ../uvm_tb/tbench_top.sv -l compile.log
-        $(VOPT) tbench_top -o opt +acc=npr
+        $(VOPT) mem_top -o opt +acc=npr
 
 
 RUN: compile
