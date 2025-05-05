@@ -8,9 +8,9 @@ RE := 1
 
 QUESTA_SIM_PATH  = '/tool/mentor/questa-10.7c/questasim/bin'
 compile:       
-        $(VLOG) ../rtl/memory.sv ../uvm_tb/tbench_top.sv -l compile.log
-        $(VOPT) mem_top -o opt +acc=npr
+	$(VLOG) ../rtl/memory.sv ../uvm_tb/tbench_top.sv -l compile.log
+	$(VOPT) mem_top -o opt +acc=npr
 
 
 RUN: compile
-        $(VSIM) opt -l mem.log -wlf mem.wlf "+UVM_TESTNAME=mem_wr_rd_test" "+WR=${WR}" "+RE=${RE}" -do "log -r /*" -do "run -all" -c
+	$(VSIM) opt -l mem.log -wlf mem.wlf "+UVM_TESTNAME=mem_wr_rd_test" "+WR=${WR}" "+RE=${RE}" -do "log -r /*" -do "run -all" -c
