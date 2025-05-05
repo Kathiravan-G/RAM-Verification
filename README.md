@@ -11,5 +11,5 @@ __________________________________________________________________________
 
 ## Waveform :- 
 
-![Memory Wave](C:\Users\DELL\RAM-Verification\mem_wave.png)
+![Memory Wave](mem_wave.png)
 
