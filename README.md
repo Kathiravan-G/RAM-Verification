@@ -1,5 +1,5 @@
 ## RAM-Verification
-Verification of RAM using UVM TB - Covered advanced topics like assertion and function coverage
+Verification of RAM using UVM TB - Covered advanced topics like assertion and functional coverage
 ____________________________________________________________________________________________
 # Coverage file were added TB with Makefile --> v1.1
 
