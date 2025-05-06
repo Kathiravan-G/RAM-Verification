@@ -9,13 +9,14 @@ class mem_driver extends uvm_driver #(mem_seq_item);
   //--------------------------------------- 
   virtual mem_if vif;
   `uvm_component_utils(mem_driver)
-
+  mem_coverage mem_cov;
+    
   //--------------------------------------- 
   // Constructor
   //--------------------------------------- 
   function new (string name, uvm_component parent);
     super.new(name, parent);
-  endfunction : new
+  endfunction : new 
 
   //--------------------------------------- 
   // build phase
@@ -24,6 +25,8 @@ class mem_driver extends uvm_driver #(mem_seq_item);
     super.build_phase(phase);
      if(!uvm_config_db#(virtual mem_if)::get(this, "", "vif", vif))
        `uvm_fatal("NO_VIF",{"virtual interface must be set for: ",get_full_name(),".vif"});
+     if(!uvm_config_db#(mem_coverage)::get(this, "", "MEM_COV",mem_cov))
+       `uvm_fatal("NO_COV",{"virtual interface must be set for: ",get_full_name(),"mem_cov"});
   endfunction: build_phase
 
   //---------------------------------------  
@@ -33,14 +36,16 @@ class mem_driver extends uvm_driver #(mem_seq_item);
     forever begin
       seq_item_port.get_next_item(req);
       drive();
+      mem_cov.sample(req);
       seq_item_port.item_done();
-    end
+    end 
   endtask : run_phase
-
+  
   //---------------------------------------
   // drive - transaction level to signal level
   // drives the value's from seq_item to interface signals
   //---------------------------------------
+
   virtual task drive();
     `DRIV_IF.wr_en <= 0;
     `DRIV_IF.rd_en <= 0;

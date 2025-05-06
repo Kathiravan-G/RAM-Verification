@@ -1,16 +1,45 @@
+#----------------------------------------------------------
+#Questasim Path
+#----------------------------------------------------------
 VSIM=/tool/mentor/questa-10.7c/questasim/bin/vsim
 VLOG=/tool/mentor/questa-10.7c/questasim/bin/vlog
 VCOVER=/tool/mentor/questa-10.7c/questasim/bin/vcover
 VOPT=/tool/mentor/questa-10.7c/questasim/bin/vopt
 
+#----------------------------------------------------------
+#Default Write and Read count 
+#----------------------------------------------------------
 WR := 1
 RE := 1
 
-QUESTA_SIM_PATH  = '/tool/mentor/questa-10.7c/questasim/bin'
+#----------------------------------------------------------
+#For Compilation
+#eg:- make compile 
+#----------------------------------------------------------
+
 compile:       
-	$(VLOG) ../rtl/memory.sv ../uvm_tb/tbench_top.sv -l compile.log
-	$(VOPT) mem_top -o opt +acc=npr
+        $(VLOG) ../rtl/memory.sv ../uvm_tb/mem_top.sv -coveropt 3 +cover -l compile.log
+        $(VOPT) mem_top -o opt +acc=npr
 
-
+#----------------------------------------------------------
+#For simulation give make RUN with wr count and rd count
+#eg:- make RUN WR=2 RE=2
+#----------------------------------------------------------
 RUN: compile
-	$(VSIM) opt -l mem.log -wlf mem.wlf "+UVM_TESTNAME=mem_wr_rd_test" "+WR=${WR}" "+RE=${RE}" -do "log -r /*" -do "run -all" -c
+        $(VSIM) opt -l mem.log -wlf mem.wlf "+UVM_TESTNAME=mem_wr_rd_test" "+WR=${WR}" "+RE=${RE}" -do "log -r /*" -do "run -all" -c
+        
+#----------------------------------------------------------
+#For basic setup test simulation  
+#eg:- make BASE_TEST
+#----------------------------------------------------------
+
+BASE_TEST : compile
+        $(VSIM) opt -l mem.log -wlf mem.wlf "+UVM_TESTNAME=mem_model_base_test" -do "log -r /*" -do "run -all" -c
+
+
+#----------------------------------------------------------
+#For simulation  with coverage 
+#eg:- make RUN_COV WR=2 RE=2
+#----------------------------------------------------------
+RUN_COV : compile
+        $(VSIM) opt -l mem.log "+UVM_TESTNAME=mem_wr_rd_test" "+WR=${WR}" "+RE=${RE}" -coverage -do "coverage save -onexit ./cov/mem_cov.ucdb" -do "log -r /*" -do "run -all" -c
