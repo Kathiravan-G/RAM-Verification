@@ -1,26 +1,26 @@
-# RAM-Verification
+## RAM-Verification
 Verification of RAM using UVM TB - Covered advanced topics like assertion and function coverage
-__________________________________________________________________________
-Coverage file were added TB with Makefile --> v1.1
+____________________________________________________________________________________________
+# Coverage file were added TB with Makefile --> v1.1
 
-simulation               -> make RUN WR=<write_count_number> RE=<read_count_number>
-basic test               -> make BASE_TEST
-simulation with coverage -> make RUN_COV WR=<write_count_number> RE=<read_count_number>
-__________________________________________________________________________
+simulation               -> make RUN WR=<write_count_number> RE=<read_count_number>          
+basic test               -> make BASE_TEST                                                     
+simulation with coverage -> make RUN_COV WR=<write_count_number> RE=<read_count_number>      
+____________________________________________________________________________________________
 
-New file were added in RTL and TB with Makefile --> v1.0
+# New file were added in RTL and TB with Makefile --> v1.0
 
-simulation               -> make RUN WR=<write_count_number> RE=<read_count_number>
-__________________________________________________________________________
+simulation               -> make RUN WR=<write_count_number> RE=<read_count_number>       
+____________________________________________________________________________________________
 
 
 ## Memory Waveform :- 
 
 ![Memory Wave](mem_wave.png)
 
-__________________________________________________________________________
+____________________________________________________________________________________________
 
-##Coverage :- 
+## Coverage :- 
 
 ![Coverage](mem_cov.png)
 
